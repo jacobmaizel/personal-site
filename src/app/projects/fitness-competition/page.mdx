@@ -1,0 +1,138 @@
+import {BlogHeader} from 'src/components/blog/blog-header.tsx'
+import {BlockQuote} from 'src/components/blog/block-quote.tsx'
+import { fitnessCompetitionsProject } from 'src/common/projects.ts'
+import { Divider } from 'src/components/ui/divider.tsx'
+import 'src/styles/highlight-js/github-dimmed.css'
+
+<BlogHeader {...fitnessCompetitionsProject}  />
+
+
+TOCHERE
+
+<Divider padding={'pt-4'} width={'w-full'} />
+
+# Introduction
+
+The initial goal for this Fitness Competitions Demo Project was 
+to be a shippable product.
+<br/>
+However, towards the end of the 5 months I spent working on it
+I realized that I would gain significantly more from turning it into a learning 
+experience, rather than stressing out on the tiny details and trying to ship it. 
+
+<br/>
+
+Below I'll dive into what inspired me to create it, the tech stack I chose and why. 
+
+## Inspiration
+
+Front end development is a daunting, scary world, and I could not find an obvious way in by tip toeing around the outside.
+The only option was to dive head first and see how much I could learn. 
+
+<br/>
+I used the usual tactic of popping the first idea I saw off the top of my apple notes titled:
+<br/>
+**_cool app ideas_**
+<br/>
+
+It looked something like this:
+<br/>
+**_Group fitness comps ios + watch_**
+<br/>
+
+Not much, but enough to work with! 
+<br/>
+
+## Tech Stack
+
+### Why this tech stack?
+
+I had a few considerations to account for while researching for a tech stack: <br/> <br/>
+1. **Ensure I pick well documented frameworks**: It's significantly easier to learn if you have solid documentation to refer to, especially starting from total scratch. 
+2. **Pick a stack that will actually benefit my career as a developer, not strictly for fun**: I wanted a stack that I had a non 0% chance that I could actually use these at a company one day.
+3. **It has to be iOS**: I'll admit it, I am fully engulfed in the apple ecosystem, and wanted to learn the native development tools. 
+4. **Anything except Django/Python for the backend**: I wanted to branch out to different languages and frameworks for backend architecture, since Django was my life at the 9-5. 
+<br/>
+
+### Breakdown 
+
+#### Web: NextJS + Typescript
+
+Although it isn't the star of the show, I still needed a web platform in order to deeplink into the iOS app and initially intended to have a web-app counterpart as we will get into later on. 
+I bounced between several "Top web frameworks 2023" articles, and the majority of them had NextJS topping the list. Not the best reason to pick a framework, but good enough for me at the time! 
+
+
+#### Mobile: SwiftUI (iOS + watchOS)
+
+Since supplying a native iOS experience was one of my prerequisites, this was an easy choice. SwiftUI is well established enough to support creating apps far more complex than what I needed it for, and thankfully, apple has created a great developer workflow allowing SwiftUI to be used across watchOS and iOS apps. Not only that, but Swift in general was extremely interesting for me, since it seemed like a nice middle ground between python
+
+
+#### Backend: 
+
+**Golang**: Go was high on my to-learn list for a few reasons:
+* Easy to learn: One of Go's main attractions is that it is extremely simple if you were to put it side by side with other compiled languages. 
+* Highly performant: Go is among the most popular and performant languages for backend development. In fact, it literally was created with that specific purpose in mind! 
+* Fast compile times: In hindsight, this was a huge benefit. But back in January, this seemed like the norm. I can only appreciate it now looking back after learning Rust recently. An upcoming article on my experience learning rust is on the way :) 
+* Garbage collected: Now wait a minute, why am I putting garbage collection along side other positives? While garbage collection DOES infact add a small amount of size to the compiled binaries, and it CAN theoretically interupt instruction execution while it does its work. But in practice, it is extremely fast, and unless you have 10s of thousands of request per second at an extreme scale, you will never have to worry about it.
+<br/>
+**DB**: Postgres
+The database choice here was also a no-brainer. Postgres is not only what I was most comfortable working with and deploying, but it is performant, scalable and has a rich feature set for any use case you could imagine including things like full-text search, json-field support, as well as PostGIS for Geometric calculations. 
+
+**Cache**: Redis Stack 
+For a project of this scale, this was not necessary at all. However it was a great experience getting to know 
+not only Redis (the cache) but also the other plugin products they offer like Redis Search. It's super easy 
+to set up with a docker service, and easy to host using their cloud service.
+
+
+#### Docker 
+Docker was only used for local development. With go it is simple to put together an optimized container 
+for deployment as well, but as we will see shortly, my choice of deployment platform streamlined the process for me. 
+
+
+#### Hosting 
+
+**Heroku**: For hosting, I wanted the most plug and play solution there was. I had some basic familiarity with
+Heroku and just wanted to get up and running. Their BuildPack support for Go made it a breeze to set it up,
+with automatic HTTPS support as well, for less thant $10 a month. 
+
+## Development Process
+
+**_Drop a bunch of ideas into an apple note -> break those into basic implementation steps -> try my best at a few simple figma designs -> start coding_**
+
+<br/>
+With my lack of experience, that was the lowest friction way to just see SOME sort of progress. 
+No fancy software, development techniques or productivity hacks. The feedback loop I experienced from 
+just getting a rough structure in place was not only beneficial for learning as fast as possible, but it was 
+also addicting and fun. 
+
+### Software 
+
+### Iteration
+
+## Key Features
+
+### Services
+
+#### Authentication
+
+#### 
+
+### WatchKit Integration
+
+### HealthKit Integration 
+
+### Notifications 
+
+## What's Next?
+
+Well, as you can see from the code, and the lack of links to the app on the app store, 
+this app did not end up getting finished.
+<br/> 
+I do like the base concept, and eventually do 
+plan on fleshing out a real app based on it. But for now, the code will be there to serve as
+an example of some cool features of SwiftUI. 
+
+
+<Divider padding={'py-4'} width={'w-full'} />
+
+[Back to Top](#introduction)

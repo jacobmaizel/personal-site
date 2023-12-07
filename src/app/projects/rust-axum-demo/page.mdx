@@ -1,0 +1,22 @@
+import {BlogHeader} from 'src/components/blog/blog-header.tsx'
+import {BlockQuote} from 'src/components/blog/block-quote.tsx'
+import { rustAxumDemo } from 'src/common/projects.ts'
+import 'src/styles/highlight-js/github-dimmed.css'
+
+<BlogHeader {...rustAxumDemo}  />
+
+# About
+rust is gud
+
+## why? 
+rust is gud
+
+<BlockQuote content={"This is the best blog in the history of blogs, quite possibly in the history of the earth \n - Jacob Maizel"} />
+
+```go
+// GetCompetition returns a competition
+func GetCompetition(c *gin.Context) {
+	c.JSON(http.StatusOK, resComp)
+}
+```
+
