@@ -32,7 +32,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     img: (props: any) => <Image className=" w-full h-full" {...props} />,
     a: (props: any) => (
-      <a className="  light:text-slate-600 dark:text-slate-400" {...props}>
+      <a className=" text-blue-500" {...props}>
         {props.children}
       </a>
     ),
