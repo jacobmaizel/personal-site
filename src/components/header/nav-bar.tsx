@@ -67,15 +67,19 @@ export function NavBar({ orientation, open, setOpen }: Props) {
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4">
-                {allProjects.map(project => (
-                  <ListItem
-                    key={project.title}
-                    title={project.title}
-                    href={project.href}
-                  >
-                    {project.description}
-                  </ListItem>
-                ))}
+                {allProjects
+                  .filter(project => {
+                    return project.featured;
+                  })
+                  .map(project => (
+                    <ListItem
+                      key={project.title}
+                      title={project.title}
+                      href={project.href}
+                    >
+                      {project.description}
+                    </ListItem>
+                  ))}
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>

@@ -64,31 +64,35 @@ export default function Home() {
         <text className="font-bold text-2xl py-4">Projects</text>
 
         <div className="gap-4 flex flex-col items-center md:items-start md:flex-row md:flex-wrap">
-          {allProjects.map(project => {
-            return (
-              <div key={project.title} className="flex">
-                <Link href={project.href} scroll={true}>
-                  <Card className="w-[350px] min-h-[170px]">
-                    <CardHeader>
-                      <CardTitle>{project.title}</CardTitle>
-                      <CardDescription>{project.description}</CardDescription>
-                      {/* <Badge className="flex w-auto">#NextJS</Badge> */}
-                    </CardHeader>
+          {allProjects
+            .filter(project => {
+              return project.featured;
+            })
+            .map(project => {
+              return (
+                <div key={project.title} className="flex">
+                  <Link href={project.href} scroll={true}>
+                    <Card className="w-[350px] min-h-[170px]">
+                      <CardHeader>
+                        <CardTitle>{project.title}</CardTitle>
+                        <CardDescription>{project.description}</CardDescription>
+                        {/* <Badge className="flex w-auto">#NextJS</Badge> */}
+                      </CardHeader>
 
-                    <CardContent>
-                      {project.tags.map(tag => {
-                        return (
-                          <Badge key={tag} className="m-1">
-                            {tag}
-                          </Badge>
-                        );
-                      })}
-                    </CardContent>
-                  </Card>
-                </Link>
-              </div>
-            );
-          })}
+                      <CardContent>
+                        {project.tags.map(tag => {
+                          return (
+                            <Badge key={tag} className="m-1">
+                              {tag}
+                            </Badge>
+                          );
+                        })}
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>

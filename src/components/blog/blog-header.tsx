@@ -1,5 +1,5 @@
 'use client';
-import { BlogHeaderProps } from '@/types/project';
+import { Project } from '@/types/project';
 import classNames from 'classnames';
 import Image from 'next/image';
 import ThemedImage from '../shared/themed-image';
@@ -19,7 +19,7 @@ export function BlogHeader({
   github,
   imageObjectFit,
   platforms,
-}: BlogHeaderProps) {
+}: Project) {
   return (
     <div className="flex flex-col w-full justify-center">
       <div className=" flex flex-col">
@@ -76,7 +76,7 @@ export function BlogHeader({
           </text>
         </div>
         {/* END DATES */}
-        <Divider padding={'py-4 md:py-8'} width={'w-full'} />
+        <Divider padding={'py-4 md:pt-8'} width={'w-full'} />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { BlogHeaderProps as Project, ProjectPlatform } from '@/types/project';
+import { Project, ProjectPlatform } from '@/types/project';
 
 let web: ProjectPlatform = {
   name: 'Web',
@@ -19,6 +19,7 @@ let fitnessCompetitionsProject: Project = {
   title: 'Fitness Competitions App Demo',
   articleWrittenDate: 'Dec 12, 2023',
   github: 'personal-training',
+  featured: true,
   description: 'A fitness competition app built with Go, SwiftUI, and NextJS',
   platforms: [ios, web, watch],
   href: '/projects/fitness-competition',
@@ -41,6 +42,7 @@ let rustAxumDemo: Project = {
   title: 'Rust Axum Demo',
   github: 'rust-axum-demo',
   articleWrittenDate: 'Dec 12, 2023',
+  featured: false,
   description:
     'A Demo Rust Axum REST API demo with OpenTelemetry Distributed Tracing',
   platforms: [ios, web, watch],
@@ -61,7 +63,8 @@ let rustAxumDemo: Project = {
 
 let personalWebsiteProject: Project = {
   title: 'Portfolio Website',
-  github: 'personal-website',
+  github: 'personal-site',
+  featured: false,
   articleWrittenDate: 'Dec 12, 2023',
   description: 'A personal website built with NextJS and TailwindCSS',
   platforms: [web],
