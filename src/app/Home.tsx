@@ -1,19 +1,5 @@
-import Image from 'next/image';
-import { Project } from '@/types/project';
-import Link from 'next/link';
 import { Divider } from '@/components/ui/divider';
 import { allProjects } from '@/common/projects';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Badge } from '@components/ui/badge';
-import classNames from 'classnames';
-import { isDev } from '@/lib/utils';
 import { ProjectCard } from '@/components/project-card';
 
 export default function Home() {

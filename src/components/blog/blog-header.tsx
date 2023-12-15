@@ -54,10 +54,12 @@ export function BlogHeader({
             })}
           </div>
 
-          <GHProjectButton
-            href={`https://github.com/jacobmaizel/${github}`}
-            className="w-[1.2rem] h-[1.2rem]"
-          />
+          {github && (
+            <GHProjectButton
+              href={`https://github.com/jacobmaizel/${github}`}
+              className="w-[1.2rem] h-[1.2rem]"
+            />
+          )}
         </div>
 
         <div className="flex flex-row flex-wrap">

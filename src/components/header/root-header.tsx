@@ -6,6 +6,7 @@ import { MeAvatar } from '@components/me-avatar';
 import GHProfileButton from '@/components/profilebuttons/github-profile-button';
 import LinkedInProfileButton from '@components/profilebuttons/li-profile-button';
 import { SideSheet } from './side-sheet';
+import { isDev } from '@/lib/utils';
 
 export default function RootHeader() {
   return (
@@ -15,6 +16,14 @@ export default function RootHeader() {
           <MeAvatar />
         </div>
         <text className="text-2xl font-bold">Jacob Maizel</text>
+      </div>
+
+      <div>
+        {isDev && (
+          <div className="flex justify-center items-center">
+            <text className="text-2xl font-bold text-red-400">Dev Mode</text>
+          </div>
+        )}
       </div>
 
       <div className="flex md:hidden justify-center items-center">
