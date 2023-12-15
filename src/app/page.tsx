@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@components/ui/badge';
+import classNames from 'classnames';
 
 export default function Home() {
   return (
@@ -71,12 +72,30 @@ export default function Home() {
             .map(project => {
               return (
                 <div key={project.title} className="flex">
-                  <Link href={project.href} scroll={true}>
+                  <Link
+                    href={project.href}
+                    scroll={true}
+                    tabIndex={!project.completed ? -1 : undefined}
+                    aria-disabled={!project.completed}
+                    className={classNames(
+                      !project.completed ? 'pointer-events-none' : '',
+                    )}
+                  >
                     <Card className="w-[350px] min-h-[170px]">
                       <CardHeader>
-                        <CardTitle>{project.title}</CardTitle>
+                        <div>
+                          <CardTitle>{project.title}</CardTitle>
+                          {project.completed && (
+                            <text className="text-sm text-muted-foreground">
+                              {project.articleWrittenDate}
+                            </text>
+                          )}
+
+                          {!project.completed && (
+                            <Badge variant={'destructive'}>In Progress</Badge>
+                          )}
+                        </div>
                         <CardDescription>{project.description}</CardDescription>
-                        {/* <Badge className="flex w-auto">#NextJS</Badge> */}
                       </CardHeader>
 
                       <CardContent>

@@ -69,7 +69,7 @@ export function NavBar({ orientation, open, setOpen }: Props) {
               <ul className="grid w-[400px] gap-3 p-4">
                 {allProjects
                   .filter(project => {
-                    return project.featured;
+                    return project.featured && project.completed;
                   })
                   .map(project => (
                     <ListItem

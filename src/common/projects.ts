@@ -20,6 +20,7 @@ let fitnessCompetitionsProject: Project = {
   articleWrittenDate: 'Dec 12, 2023',
   github: 'swiftui-golang-app-demo',
   featured: true,
+  completed: true,
   description: 'A fitness competition app built with Go, SwiftUI, and NextJS',
   platforms: [ios, web, watch],
   href: '/projects/fitness-competition',
@@ -41,8 +42,9 @@ let fitnessCompetitionsProject: Project = {
 let rustAxumDemo: Project = {
   title: 'Rust Axum Demo',
   github: 'rust-axum-demo',
-  articleWrittenDate: 'Dec 12, 2023',
-  featured: false,
+  articleWrittenDate: '',
+  featured: true,
+  completed: false,
   description:
     'A Demo Rust Axum REST API demo with OpenTelemetry Distributed Tracing',
   platforms: [ios, web, watch],
@@ -64,8 +66,9 @@ let rustAxumDemo: Project = {
 let personalWebsiteProject: Project = {
   title: 'Portfolio Website',
   github: 'personal-site',
-  featured: false,
-  articleWrittenDate: 'Dec 12, 2023',
+  featured: true,
+  completed: false,
+  articleWrittenDate: '',
   description: 'A personal website built with NextJS and TailwindCSS',
   platforms: [web],
   imageObjectFit: 'object-cover',

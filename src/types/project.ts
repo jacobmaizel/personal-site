@@ -8,6 +8,7 @@ export type Project = {
   articleWrittenDate: string;
   description: string;
   featured: boolean;
+  completed: boolean;
   image: string;
   imageAlt?: string;
   imageObjectFit?: string;
