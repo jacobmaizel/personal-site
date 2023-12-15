@@ -95,9 +95,9 @@ let personalTrainingPlatform: Project = {
   description: 'An end to end personal training management platform',
   platforms: [web, ios, watch],
   href: '/projects/training-platform',
-  imageObjectFit: 'object-contain',
-  image: '/blog-pictures/fitnesscomp-icon.png',
-  imageAlt: 'Personal Training Platform App Icon',
+  imageObjectFit: 'object-cover',
+  image: '/blog-pictures/training-platform.png',
+  imageAlt: 'training app ai generated abstract header image',
   tags: [
     'Rust',
     'Axum',
