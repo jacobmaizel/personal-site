@@ -13,6 +13,10 @@ export function BlogHeader({
   title,
   image,
   imageAlt,
+  projectType,
+  developmentStatus,
+  sourceType,
+  blogCompleted,
   description,
   articleWrittenDate,
   tags,
@@ -61,11 +65,53 @@ export function BlogHeader({
             />
           )}
         </div>
+        <div>
+          {!blogCompleted && (
+            <Badge className="mr-2 mb-1 border-red-900" variant={'outline'}>
+              Blog In Progress
+            </Badge>
+          )}
 
-        <div className="flex flex-row flex-wrap">
+          {sourceType === 'Closed Source' && (
+            <Badge className=" mr-2 mb-1 border-blue-900" variant={'outline'}>
+              Closed Source
+            </Badge>
+          )}
+
+          {developmentStatus === 'Active Development' && (
+            <Badge className=" mr-2 mb-1 border-yellow-700" variant={'outline'}>
+              Active Development
+            </Badge>
+          )}
+
+          {developmentStatus === 'Completed' && (
+            <Badge className=" mr-2 mb-1 border-orange-900" variant={'outline'}>
+              Completed
+            </Badge>
+          )}
+
+          {sourceType === 'Open Source' && (
+            <Badge className=" mr-2 mb-1 border-green-900" variant={'outline'}>
+              Open Source
+            </Badge>
+          )}
+
+          {projectType === 'Demo' && (
+            <Badge className=" mr-2 mb-1 border-sky-400" variant={'outline'}>
+              Demo
+            </Badge>
+          )}
+
+          {projectType === 'Production' && (
+            <Badge className=" mr-2 mb-1 border-purple-700" variant={'outline'}>
+              Production
+            </Badge>
+          )}
+        </div>
+        <div className="flex flex-row flex-wrap mt-2">
           {tags.map(tag => {
             return (
-              <Badge key={tag} className="m-1">
+              <Badge key={tag} className="mr-2 mb-1">
                 {tag}
               </Badge>
             );

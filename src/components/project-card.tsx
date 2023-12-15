@@ -102,7 +102,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <CardContent>
             {project.tags.map(tag => {
               return (
-                <Badge key={tag} className="m-1">
+                <Badge key={tag} className="mr-2 mb-1">
                   {tag}
                 </Badge>
               );
