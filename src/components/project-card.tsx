@@ -17,17 +17,17 @@ export function ProjectCard({ project }: { project: Project }) {
       <Link
         href={project.href}
         scroll={true}
-        tabIndex={!project.completed ? -1 : undefined}
-        aria-disabled={!project.completed && !isDev}
+        tabIndex={!project.blogCompleted ? -1 : undefined}
+        aria-disabled={!project.blogCompleted && !isDev}
         className={classNames(
-          !project.completed && !isDev ? 'pointer-events-none' : '',
+          !project.blogCompleted && !isDev ? 'pointer-events-none' : '',
         )}
       >
         <Card className="w-[350px] min-h-[170px]">
           <CardHeader>
             <div className=" leading-tight">
               <CardTitle>{project.title}</CardTitle>
-              {project.completed && (
+              {project.blogCompleted && (
                 <text className="text-sm text-muted-foreground">
                   {project.articleWrittenDate}
                 </text>
@@ -37,7 +37,7 @@ export function ProjectCard({ project }: { project: Project }) {
             <CardDescription>{project.description}</CardDescription>
 
             <div>
-              {!project.completed && (
+              {!project.blogCompleted && (
                 <Badge className="mr-2 mb-1 border-red-900" variant={'outline'}>
                   Blog In Progress
                 </Badge>
@@ -49,6 +49,24 @@ export function ProjectCard({ project }: { project: Project }) {
                   variant={'outline'}
                 >
                   Closed Source
+                </Badge>
+              )}
+
+              {project.developmentStatus === 'Active Development' && (
+                <Badge
+                  className=" mr-2 mb-1 border-yellow-700"
+                  variant={'outline'}
+                >
+                  Active Development
+                </Badge>
+              )}
+
+              {project.developmentStatus === 'Completed' && (
+                <Badge
+                  className=" mr-2 mb-1 border-orange-900"
+                  variant={'outline'}
+                >
+                  Completed
                 </Badge>
               )}
 

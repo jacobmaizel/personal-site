@@ -10,7 +10,8 @@ export type Project = {
   sourceType: SourceType;
   projectType: ProjectType;
   featured: boolean;
-  completed: boolean;
+  developmentStatus: DevelopmentStatus;
+  blogCompleted: boolean;
   image: string;
   imageAlt?: string;
   imageObjectFit?: string;
@@ -22,3 +23,4 @@ export type Project = {
 
 export type SourceType = 'Open Source' | 'Closed Source';
 export type ProjectType = 'Demo' | 'Production';
+export type DevelopmentStatus = 'Active Development' | 'Completed';
