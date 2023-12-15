@@ -18,7 +18,7 @@ let watch: ProjectPlatform = {
 let fitnessCompetitionsProject: Project = {
   title: 'Fitness Competitions App Demo',
   articleWrittenDate: 'Dec 12, 2023',
-  github: 'personal-training',
+  github: 'swiftui-golang-app-demo',
   featured: true,
   description: 'A fitness competition app built with Go, SwiftUI, and NextJS',
   platforms: [ios, web, watch],

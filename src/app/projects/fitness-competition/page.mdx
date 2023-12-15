@@ -11,18 +11,9 @@ TOCHERE
 
 <Divider padding={'py-4'} width={'w-full'} />
 
-# Introduction
+# NOTE
 
-The initial goal for this Fitness Competitions Demo Project was 
-to be a shippable product.
-<br/>
-However, towards the end of the 5 months I spent working on it
-I realized that I would gain significantly more from turning it into a learning 
-experience, rather than stressing out on the tiny details and trying to ship it. 
-
-<br/>
-
-Below I'll dive into what inspired me to create it, the tech stack I chose and why. 
+**This project is not finished, and is not intended to be. The main purpose of this project was to learn SwiftUI and Golang, and to get a feel for the development process of a full stack application. Please keep this in mind while reading through the code. That being said, feel free to use this code as a reference for your own projects, or to learn from.**
 
 ## Inspiration
 
@@ -43,6 +34,29 @@ It looked something like this:
 Not much, but enough to work with! 
 <br/>
 
+## About 
+This project consists of an ios app, watch os app and a backend api to drive it. The idea was to create a platform for fitness competitions, where users could create competitions, invite friends, and compete against each other in various fitness challenges. However, the functionality I left off at is the following:
+
+<br/>
+**iOS App**
+* Create a competition
+* Invite friends to a competition
+* Join a competition
+* View your competition
+* Create and invite friends to a group, and see your cumulative stats (only total cardio workout distance is shown)
+* View your profile, consisting of your total stats, and a list of your workouts. 
+* Apply workouts to a competition
+* search for users, groups and competitions
+* Configure a workout and send a local notification to start the workout on your watch 
+
+<br/>
+**Watch App**
+* Start a workout, mainly focused on cardio based workouts
+* Pause / End your workout. 
+* Tracks GPS route for out door workouts. 
+* View your competitions from your watch using ios -> watchOS messaging 
+
+
 ## Tech Stack
 
 ### Why this tech stack?
@@ -54,94 +68,146 @@ I had a few considerations to account for while researching for a tech stack: <b
 4. **Anything except Django/Python for the backend**: I wanted to branch out to different languages and frameworks for backend architecture, since Django was my life at the 9-5. 
 <br/>
 
-### Breakdown 
 
-#### Web: NextJS + Typescript
+## Backend Architecture
 
-Although it isn't the star of the show, I still needed a web platform in order to deeplink into the iOS app and initially intended to have a web-app counterpart as we will get into later on. 
-I bounced between several "Top web frameworks 2023" articles, and the majority of them had NextJS topping the list. Not the best reason to pick a framework, but good enough for me at the time! 
+### Tech stack
 
-
-#### Mobile: SwiftUI (iOS + watchOS)
-
-Since supplying a native iOS experience was one of my prerequisites, this was an easy choice. SwiftUI is well established enough to support creating apps far more complex than what I needed it for, and thankfully, apple has created a great developer workflow allowing SwiftUI to be used across watchOS and iOS apps. Not only that, but Swift in general was extremely interesting for me, since it seemed like a nice middle ground between python
-
-
-#### Backend: 
-
-**Golang**: Go was high on my to-learn list for a few reasons:
+**Language**: Go\
+Golang was high on my to-learn list for a few reasons:
 * Easy to learn: One of Go's main attractions is that it is extremely simple if you were to put it side by side with other compiled languages. 
 * Highly performant: Go is among the most popular and performant languages for backend development. In fact, it literally was created with that specific purpose in mind! 
 * Fast compile times: In hindsight, this was a huge benefit. But back in January, this seemed like the norm. I can only appreciate it now looking back after learning Rust recently. An upcoming article on my experience learning rust is on the way :) 
 * Garbage collected: Now wait a minute, why am I putting garbage collection along side other positives? While garbage collection DOES infact add a small amount of size to the compiled binaries, and it CAN theoretically interupt instruction execution while it does its work. But in practice, it is extremely fast, and unless you have 10s of thousands of request per second at an extreme scale, you will never have to worry about it.
+
 <br/>
-**DB**: Postgres
+
+**Web Framework**: [Gin](https://github.com/gin-gonic/gin)\
+I was enticed by Gin's promise of simplicity, efficiency and speed. It is a very lightweight framework that is easy to get up and running with. It also has a very active community, and a large amount of plugins and middleware to choose from.
+Many services have Gin specific plugins available as well. 
+<br/>
+**ORM**: [Ent](https://entgo.io/)\
+I was extremely impressed by Ent. Their documentation gives us examples of 99% of use cases you could come up with, and for those 1% of situations you can find an answer to their, they have an active Discord community that is very helpful.
+Ent managed Database migrations, schema generation and has a great query builder. Highly recommend.
+
+<br/>
+**DB**: Postgres\
 The database choice here was also a no-brainer. Postgres is not only what I was most comfortable working with and deploying, but it is performant, scalable and has a rich feature set for any use case you could imagine including things like full-text search, json-field support, as well as PostGIS for Geometric calculations. 
 
-**Cache**: Redis Stack 
+<br/>
+**Cache**: Redis Stack\
 For a project of this scale, this was not necessary at all. However it was a great experience getting to know 
 not only Redis (the cache) but also the other plugin products they offer like Redis Search. It's super easy 
 to set up with a docker service, and easy to host using their cloud service.
 
-
-#### Docker 
+<br/>
+**Containerization**: Docker\
 Docker was only used for local development. With go it is simple to put together an optimized container 
 for deployment as well, but as we will see shortly, my choice of deployment platform streamlined the process for me. 
 
+<br/>
+### Services
 
-#### Hosting 
+**Authentication**: [Auth0](https://auth0.com/)\
+I chose Auth0 due to its well supported SDK Library for all of the platforms I needed. Their [Swift Library](https://auth0.com/docs/libraries/auth0-swift) has fantastic walkthroughs, blogs, and technical documentation that will walk you through integration step by step.\
+Also, I am an advocate for not solving a problem that has already been solved 50 billion times by really smart people, especially authentication. 
 
-**Heroku**: For hosting, I wanted the most plug and play solution there was. I had some basic familiarity with
+<br/>
+**Error Logging**: [Sentry](https://sentry.io/)\
+I chose sentry to handle error logging for similar reasons to Auth0. Extremely good documentation and [well maintained SDKs](https://github.com/getsentry/sentry-cocoa). The amount of time and effort you will save by picking services based on those two factors will be enormous. 
+
+<br/>
+**Telemetry**: [New Relic](https://newrelic.com/)\
+While I did not end up taking nearly full advantage of what new relic [has to offer](https://docs.newrelic.com/docs/new-relic-solutions/tutorial-landing-page/), I did plug it into the backend api to start getting a feel for tracing and telemetry/APM since it was still very foreign to me at the time. 
+
+<br/>
+**Hosting**: [Heroku](https://www.heroku.com/)\
+For hosting, I wanted the most plug and play solution there was. I had some basic familiarity with
 Heroku and just wanted to get up and running. Their BuildPack support for Go made it a breeze to set it up,
 with automatic HTTPS support as well, for less thant $10 a month. 
 
-## Development Process
+### Project structure
 
-**_Drop a bunch of ideas into an apple note -> break those into basic implementation steps -> try my best at a few simple figma designs -> start coding_**
+I tried to keep the project folder structure as flat as possible. Golang's simplicity made configuring the project structure a breeze. 
+
+<br/>
+**Endpoints**: `/api/<resource_type>/endpoints.go`\
+To keep it simple, all of the endpoints for a given resource are kept in a single file. 
 
 <br/>
 
-With my lack of experience, that was the lowest friction way to just see SOME sort of progress. 
-No fancy software, development techniques or productivity hacks. The feedback loop I experienced from 
-just getting a rough structure in place was not only beneficial for learning as fast as possible, but it was 
-also addicting and fun. 
+**Middleware**: `/middleware/*.go`\
+The only middleware I needed to write for this demo was a logger to intercept the request and response, and a middleware to handle authentication, which was handled by Auth0. The auth middleware also injected the user object into the context, so it could be accessed by the endpoint functions.
+<br/>
 
+**Models**: `/ent/schema/<resource_type>.go`\
+With Ent, all of the models are defined in a single file, in order to be picked up by code gen. 
+You can customize the path to the models, but I found this to be the most simple.
 
+<br/>
 
-### Software 
+**Server Object**: `/server/server.go`\
+Unlike Rust (which we will see in a future article), Go makes it super easy to set up a shared server object that can be used across the entire application. This is where all of the entry points into the service sdks are held, so they can all easily be used no matter where you are in the application. In the main server functions held in `main.go`, we simply go through these services and initialize them all before starting the server.
 
-### Iteration
+<br/>
+**Utilities**: `/utils/*.go`\
+I kept all kinds of miscellaneous utilities in this folder. Things like error handling, logging, and other helper functions.
 
-## Key Features
+<br/>
+**Redis**: `/redis/redis_helpers.go`\
+Here I kept all of the redis search indexing functions that were triggered to update the documents by ent hooks 
+when a resource was created or updated.
+
+## Frontend Architecture
+
+### Tech stack
+
+**Mobile**: SwiftUI\
+Since supplying a native iOS experience was one of my prerequisites, this was an easy choice. SwiftUI is well established enough to support creating apps far more complex than what I needed it for, and thankfully, apple has created a great developer workflow allowing SwiftUI to be used across watchOS and iOS apps. Not only that, but Swift in general was extremely interesting for me, since it seemed like a nice middle ground between python
+
+<br/>
+**NextJS**: Web\
+Although it isn't the star of the show, I still needed a web platform in order to deeplink into the iOS app and initially intended to have a web-app counterpart as we will get into later on. 
+I bounced between several "Top web frameworks 2023" articles, and the majority of them had NextJS topping the list. Not the best reason to pick a framework, but good enough for me at the time! 
+
+<br/>
 
 ### Services
 
-#### Authentication
-**Auth0**: I chose Auth0 due to its well supported SDK Library for all of the platforms I needed. Their [Swift Library](https://auth0.com/docs/libraries/auth0-swift) has fantastic walkthroughs, blogs, and technical documentation that will walk you through integration step by step.\
-Also, I am an advocate for not solving a problem that has already been solved 50 billion times by really smart people, especially authentication. 
+**Authentication**: [Auth0](https://auth0.com/)
 
-#### Error Logging 
-**Sentry**: I chose sentry to handle error logging for similar reasons to Auth0. Extremely good documentation and [well maintained SDKs](https://github.com/getsentry/sentry-cocoa). The amount of time and effort you will save by picking services based on those two factors will be enormous. 
+<br/>
+**Error Logging**: [Sentry](https://sentry.io/)
 
-#### Telemetry 
-**NewRelic**: While I did not end up taking nearly full advantage of what new relic [has to offer](https://docs.newrelic.com/docs/new-relic-solutions/tutorial-landing-page/), I did plug it into the backend api to start getting a feel for tracing and telemetry/APM since it was still very foreign to me at the time. 
+<br/>
+**Telemetry**: [New Relic](https://newrelic.com/)
+
+<br/>
 
 
-### WatchKit Integration
+### SwiftUI Project structure
 
-### HealthKit Integration 
+**Views**: `/Views/*.swift`\
+I seperated all of the individual shared lower level components, and higher level views into their own files.
 
-### Notifications 
+
+<br/>
+
+**Models**: `/Models/*.swift`\
+All of the models that I used to deserialize the JSON responses from the backend were kept in this folder.
+
+<br/>
+
+**Services**: `/Services/*.swift`\
+This folder held all of the iOS Service managers, for things like HealthKit, WeatherKit, Notifications etc. As well as 
+the model definition for the **Datamodel** which was the main object that held all of the data for the app.
+It also held `/api` which was a folder that held all of the endpoints for the backend api.
+
+
 
 ## What's Next?
 
-Well, as you can see from the code, and the lack of links to the app on the app store, 
-this app did not end up getting finished.
-<br/> 
-I do like the base concept, and eventually do 
-plan on fleshing out a real app based on it. But for now, the code will be there to serve as
-an example of some cool features of SwiftUI. 
-
+I could go into great detail in this blog, but I think the short intro above gives you enough context to jump into the code and take a look around. All in all this demo project ended up being a fantastic learning experience, giving me the confidence I needed to jump into the world of full stack development. 
 
 <Divider padding={'py-4'} width={'w-full'} />
 
