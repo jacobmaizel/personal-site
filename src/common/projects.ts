@@ -73,7 +73,7 @@ let personalWebsiteProject: Project = {
   title: 'Portfolio Website',
   github: 'personal-site',
   sourceType: 'Open Source',
-  projectType: 'Demo',
+  projectType: 'Production',
   featured: true,
   blogCompleted: false,
   developmentStatus: 'Active Development',
