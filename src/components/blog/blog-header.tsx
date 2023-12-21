@@ -9,6 +9,7 @@ import { Divider } from '../ui/divider';
 import { AspectRatio } from '../ui/aspect-ratio';
 import { Badge } from '../ui/badge';
 import { GHProjectButton } from '../shared/gh-project-button';
+import ScrollUp from '../shared/scroll-up';
 export function BlogHeader({
   title,
   image,
@@ -26,6 +27,7 @@ export function BlogHeader({
 }: Project) {
   return (
     <div className="flex flex-col w-full justify-center">
+      {/* <ScrollUp /> */}
       <div className=" flex flex-col">
         <div className=" relative  w-full pb-[56%] lg:pb-[40%] xl:pb-[25%]">
           <div className=" absolute top-0 bottom-0 right-0 left-0">

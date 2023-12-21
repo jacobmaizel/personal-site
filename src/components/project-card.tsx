@@ -13,8 +13,10 @@ import { Badge } from './ui/badge';
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <div key={project.title} className="flex">
+    <div className="flex">
       <Link
+        legacyBehavior
+        passHref
         href={project.href}
         scroll={true}
         // tabIndex={!project.blogCompleted ? -1 : undefined}
