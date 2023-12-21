@@ -118,11 +118,15 @@ export function BlogHeader({
           })}
         </div>
         {/* Dates */}
-        <div className="mt-2">
-          <text className="text-xs text-muted-foreground leading-tight ">
-            <p>Published: {articleWrittenDate}</p>
-          </text>
-        </div>
+
+        {articleWrittenDate && (
+          <div className="mt-2">
+            <text className="text-xs text-muted-foreground leading-tight ">
+              <p>Published: {articleWrittenDate}</p>
+            </text>
+          </div>
+        )}
+
         {/* END DATES */}
         <Divider padding={'py-4 md:pt-8'} width={'w-full'} />
       </div>

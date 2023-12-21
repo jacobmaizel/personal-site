@@ -5,18 +5,22 @@ import 'src/styles/highlight-js/github-dimmed.css'
 
 <BlogHeader {...rustAxumDemo}  />
 
-# About
-rust is gud
+**_Open source repo link and writeup on the way!_**
+<br/>
+## About
 
-## why? 
-rust is gud
 
-<BlockQuote content={"This is the best blog in the history of blogs, quite possibly in the history of the earth \n - Jacob Maizel"} />
+This project is the result of a few hours of hacking on a weekend. I wanted to
+get a good feel for configuring distributed tracing using OpenTelemetry in Rust. 
 
-```go
-// GetCompetition returns a competition
-func GetCompetition(c *gin.Context) {
-	c.JSON(http.StatusOK, resComp)
-}
-```
+<br/>
+
+The write up will cover the following and include code samples: 
+
+- Setting up an [Axum](https://docs.rs/axum/latest/axum/) web server
+- Configuring [OpenTelemetry](https://opentelemetry.io/) to format and emit traces using [Tokio Tracing](https://github.com/tokio-rs/tracing).
+- Configuring [Jaeger](https://www.jaegertracing.io/) to receive traces from the web server
+- Setting up an example gRPC server and client using [Tonic](https://github.com/hyperium/tonic), calling the service from the web server, and propagating the trace context between the two services to Jaeger. 
+
+
 

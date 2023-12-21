@@ -17,11 +17,11 @@ export function ProjectCard({ project }: { project: Project }) {
       <Link
         href={project.href}
         scroll={true}
-        tabIndex={!project.blogCompleted ? -1 : undefined}
-        aria-disabled={!project.blogCompleted && !isDev}
-        className={classNames(
-          !project.blogCompleted && !isDev ? 'pointer-events-none' : '',
-        )}
+        // tabIndex={!project.blogCompleted ? -1 : undefined}
+        // aria-disabled={!project.blogCompleted && !isDev}
+        // className={classNames(
+        //   !project.blogCompleted && !isDev ? 'pointer-events-none' : '',
+        // )}
       >
         <Card className="w-[350px] min-h-[170px]">
           <CardHeader>

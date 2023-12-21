@@ -44,7 +44,7 @@ let fitnessCompetitionsProject: Project = {
 
 let rustAxumDemo: Project = {
   title: 'Rust Axum Demo',
-  github: 'rust-axum-demo',
+  github: '',
   articleWrittenDate: '',
   sourceType: 'Open Source',
   projectType: 'Demo',

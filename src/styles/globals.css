@@ -68,11 +68,11 @@
   }
 }
 
+
+/* rehype toc */
 h1 > a, h2 > a, h3 > a, h4 > a {
-    /* Dark slate */
     color: rgb(100 116 139 / var(--tw-text-opacity)) !important;
 }
-
 .toc-item {
     font-weight: bold;
     color: hsl(220 14.3% 95.9%);
@@ -86,6 +86,12 @@ h1 > a, h2 > a, h3 > a, h4 > a {
 }
 .toc-item-h4 {
     margin-left: 3rem
+}
+:is(.light) .toc-link {
+    color: hsl(220 8.9% 46.1%)
+}
+:is(.dark) .toc-link {
+    color: hsl(217.9 10.6% 64.9%)
 }
  
 

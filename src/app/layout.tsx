@@ -7,6 +7,7 @@ import RootHeader from '@/components/header/root-header';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Favicon from 'public/favicon.ico';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Jacob Maizel',
@@ -34,11 +35,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <title>Jacob maizel</title>
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
       </head>
+
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+        strategy="lazyOnload"
+      />
+      <Script id="google-analytics" strategy="lazyOnload">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+        `}
+      </Script>
+
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
+          'min-h-screen bg-background font-sans antialiased dar',
           fontSans.variable,
         )}
       >
