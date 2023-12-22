@@ -1,8 +1,8 @@
-import {BlogHeader} from 'src/components/blog/blog-header.tsx'
-import {BlockQuote} from 'src/components/blog/block-quote.tsx'
+import { BlogHeader } from 'src/components/blog/blog-header.tsx'
+import { BlockQuote } from 'src/components/blog/block-quote.tsx'
 import { personalWebsiteProject } from 'src/common/projects.ts'
-import 'src/styles/highlight-js/github-dimmed.css'
 import { Divider } from 'src/components/ui/divider.tsx'
+import 'src/styles/highlight-js/github-dimmed.css'
 
 <BlogHeader project={personalWebsiteProject}  />
 
@@ -43,8 +43,7 @@ Below is the entire config for setting up NextJS to:
 
 
 <br/>
-```File: next.config.mjs```
-
+```next.config.mjs```
 
 ```typescript
 import createMDX from '@next/mdx';
@@ -88,4 +87,235 @@ const withMDX = createMDX({
 ```
 
 
+## Structuring an MDX Blog Post
 
+There may be a more efficient or dynamic way to do this, but to start I am simply making a new folder which corresponds to the endpoint name, and adding a `page.mdx` file.
+<br/>
+ie. `src/app/projects/< name >/page.mdx`
+
+<br/>
+
+At some point in the future I might consider hosting the mdx files on a CDN and dynamically fetching them.
+<br/>
+
+### Blog Header 
+
+The first step is adding in the blog header component. 
+
+<br/>
+
+```typescript
+import { BlogHeader } from 'src/components/blog/blog-header.tsx'
+import { Divider } from 'src/components/ui/divider.tsx'
+import { personalWebsiteProject } from 'src/common/projects.ts'
+import 'src/styles/highlight-js/github-dimmed.css'
+
+<BlogHeader project={personalWebsiteProject}  />
+```
+<br/>
+Above, we are importing our Blog header component, and passing in the project object which contains the title, description, and other metadata.\
+
+The blog header found at `src/components/blog/blog-header.tsx` Takes in the project object and handles rendering the blog header image, tags, status indicators and github link if there is one. 
+
+
+<br/>
+
+### Table of Contents
+
+You might be wondering what the "TOCHERE" means when looking through any of the blog mdx files. This is a placeholder that tells the rehype-toc plugin where to insert the table of contents. Like I said, rehype plugins + MDX are magic.
+
+<br/>
+
+And thats really the most crucial part of making an MDX file special here. The ability to import objects and components. After that, you can just write markdown as you normally would.
+
+```typescript
+TOCHERE  
+
+<Divider padding={'py-4'} width={'w-full'} />
+
+**_In progress!_**
+
+<br/>
+
+## About
+
+........
+```
+
+<br/>
+### Styling MDX Components 
+
+Another fantastic part of the integration between next js and MDX is the ability to override the styling of specific html tags that are automatically generated from the markdown. All of the overrides are done in `./mdx-components.tsx`. A piece of that code is shown below. 
+
+
+<br/>
+```typescript 
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return {
+    h1: props => (
+      <h1 className=" text-4xl font-extrabold my-6" {...props}>
+        {props.children}
+      </h1>
+    ),
+    h2: props => (
+      <h2 className=" text-3xl font-bold my-4" {...props}>
+        {props.children}
+      </h2>
+    ),
+    h3: props => (
+      <h3 className=" text-xl font-semibold my-2" {...props}>
+        {props.children}
+      </h3>
+    ),
+    h4: props => (
+      <h4 className=" text-lg font-semibold my-2" {...props}>
+        {props.children}
+      </h4>
+    ),
+    p: props => (
+      <p className="text-base leading-snug" {...props}>
+        {props.children}
+      </p>
+    ),
+    img: (props: any) => <Image className=" w-full h-full" {...props} />,
+    a: (props: any) => (
+      <a className=" text-blue-500" {...props}>
+        {props.children}
+      </a>
+    )
+  }}
+```
+<br/>
+
+As you can see, its very convienient to override the styling of any html tag you want here, even being able to use tailwind. Some things will still need `!important` overrides in `globals.css` but for the most part this is all you need.
+
+<br/>
+example of a style override needed for specific parent/child combinations. This one is used to properly color the anchor links for each section.
+```css 
+h1 > a, h2 > a, h3 > a, h4 > a {
+    color: rgb(100 116 139 / var(--tw-text-opacity)) !important;
+}
+```
+
+<br/>
+
+### Code Block Styling
+
+Another crucial part of any technical blog is code block syntax highlighting. Thankfully, this is another integration that feels like magic onces its working. 
+
+<br/>
+
+To accomplish this we will use [highlight-js](https://highlightjs.org/), and the rehype-highlight plugin.
+
+
+<br/>
+
+After adding it to the mdx config object in `next.config.mjs` like so:
+
+<br/>
+
+```typescript
+      [
+        rehypeHighlight,
+        {
+          languages: {
+            python: langPython,
+            swift: langSwift,
+            go: langGo,
+            typescript: langTypescript,
+            rust: langRust,
+            css: langCss,
+          },
+        },
+      ]
+```
+
+<br/>
+
+All you need to do is [pick a theme from their repo](https://github.com/highlightjs/highlight.js/tree/main/src/styles), download it, and import it directly into your mdx file.
+
+<br/>
+
+```typescript
+import 'src/styles/highlight-js/github-dimmed.css'
+```
+
+<br/>
+
+You are free to make adjustments to the theme's css as you need.
+
+<br/>
+
+For example, I fine tuned the code block styling to remove unneccessary scroll bars, and played with the padding and margins.
+
+<br/>
+
+```css
+/* ....... */
+pre:has(.hljs), .hljs {
+    color: #adbac7;
+    background: #22272e;
+    border-radius: 1rem;
+    display: inline-block;
+    overflow-x: scroll;
+    margin: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    width: 0;  
+    background: transparent;  
+    display: none;
+}
+
+code {
+    white-space: pre;
+    padding: 1rem; 
+    margin: 1rem 0.5rem 1rem 1rem;
+}
+/* CSS Continues... */
+```
+
+
+<br/>
+
+### Adding Anchor Links to Headers
+
+The expected behavior from a header is the ability to click on it and be taken to that section of the page. This is accomplished by adding an anchor link to each header.
+
+<br/>
+
+A combination of the rehype-slug and rehype-autolink-headings plugins will automatically add anchor links to each header with the id's being the same as the header text. 
+
+ie. If you were right click on the above header and inspect it, you would find html that looks like this.
+
+
+```typescript
+<h3 class="text-xl font-semibold my-2" id="adding-anchor-links-to-headers"><a class=" text-blue-500" href="#adding-anchor-links-to-headers">Adding Anchor Links to Headers</a></h3>
+```
+
+
+Then take a look at the table of contents link that was generated, and you will see the corresponding anchor link.
+
+
+```typescript
+<a class="toc-link toc-link-h3" href="#adding-anchor-links-to-headers">Adding Anchor Links to Headers</a>
+```
+
+
+<br/>
+
+## Conclusion
+
+And that about wraps up my journey so far with NextJS and MDX. I was pleasantly surprised with how easy it was to get up and running, and the ease of customization. 
+
+
+<br/>
+
+<Divider padding={'py-4'} width={'w-full'} />
+
+[Back to Top](#about)
+
+<br/>

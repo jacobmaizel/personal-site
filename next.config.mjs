@@ -10,6 +10,7 @@ import langSwift from 'highlight.js/lib/languages/swift';
 import langGo from 'highlight.js/lib/languages/go';
 import langRust from 'highlight.js/lib/languages/rust';
 import langTypescript from 'highlight.js/lib/languages/typescript';
+import langCss from 'highlight.js/lib/languages/css';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
@@ -27,6 +28,8 @@ const withMDX = createMDX({
             swift: langSwift,
             go: langGo,
             typescript: langTypescript,
+            rust: langRust,
+            css: langCss,
           },
         },
       ],

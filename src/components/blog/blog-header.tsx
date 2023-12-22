@@ -14,7 +14,6 @@ import { ProjectBadgeSet } from '../shared/project-badge-set';
 export function BlogHeader({ project }: { project: Project }) {
   return (
     <div className="flex flex-col w-full justify-center">
-      {/* <ScrollUp /> */}
       <div className=" flex flex-col">
         <div className=" relative  w-full pb-[56%] lg:pb-[40%] xl:pb-[25%]">
           <div className=" absolute top-0 bottom-0 right-0 left-0">
