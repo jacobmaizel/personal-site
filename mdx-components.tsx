@@ -47,7 +47,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </ol>
     ),
     li: props => (
-      <li className=" text-base leading-snug" {...props}>
+      <li className=" text-base " {...props}>
         {props.children}
       </li>
     ),

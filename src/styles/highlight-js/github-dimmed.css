@@ -14,18 +14,14 @@ pre:has(.hljs), .hljs {
     border-radius: 1rem;
     display: inline-block;
     overflow-x: scroll;
+    overflow-y: hidden;
     /* padding: 1rem; */
     height: 100%;
     margin: 1rem;
     font-size: 0.875rem/* 14px */;
     line-height: 1.25rem/* 20px */;
-
-
     scrollbar-width: none; /* Firefox */
-   
-  
 }
-
 
 ::-webkit-scrollbar {
     width: 0;  /* Remove scrollbar space */
@@ -34,17 +30,10 @@ pre:has(.hljs), .hljs {
 }
 
 code {
-    /* white-space: pre-wrap; */
     white-space: pre;
-   
-     /* padding: 0.5em; */
     padding: 1rem; 
     margin: 1rem 0.5rem 1rem 1rem;
-
-   
-    
 }
-
   
   .hljs-doctag,
   .hljs-keyword,

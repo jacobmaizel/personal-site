@@ -5,24 +5,87 @@ import 'src/styles/highlight-js/github-dimmed.css'
 import { Divider } from 'src/components/ui/divider.tsx'
 
 <BlogHeader project={personalWebsiteProject}  />
-{/* 
-TOCHERE  */}
 
-{/* <Divider padding={'py-4'} width={'w-full'} /> */}
+TOCHERE  
 
-**_Full writeup on the way!_**
+<Divider padding={'py-4'} width={'w-full'} />
+
+**_In progress!_**
+
 <br/>
 ## About
-For my personal site, my main focus was getting something up and running as soon as possible, which had a great dev experience, and was easy to maintain. While this write up is not yet finished, I will be going over the following topics:
+For my personal site, my main focus was getting something up and running as soon as possible, which had a great dev experience, and was easy to maintain. 
 
-- Getting up and running with [Next.js](https://nextjs.org/)
-- [shadcn](https://shadcn.com/) and [Tailwind CSS](https://tailwindcss.com/) for styling
-- [MDX](https://mdxjs.com/) for blog posts and integrating with NextJS
-- rehype plugins to add syntax highlighting to MDX, generate table of contents, and more.
+
+## Tech Stack
+
+* [Next.js](https://nextjs.org/) 
+* [TypeScript](https://www.typescriptlang.org/) because javascript is scary 
+* [shadcn](https://shadcn.com/) and [Tailwind CSS](https://tailwindcss.com/) for styling because making components is really hard 
+* [MDX](https://mdxjs.com/) for blog posts and integrating with NextJS
+* [Vercel](https://vercel.com/) for hosting
+* rehype plugins to add syntax highlighting to MDX, generate table of contents, and more.
 
 <br/>
 
-In the meantime, you can check out the source code above using the Github link in the header.
+Below are some code snippets from the repo that I found interesting.
+
+
+## MDX Configuration
+
+NextJS has excellent support for MDX, and it was really easy to get up and running. This is where the magic happens. Check the docs [here.](https://nextjs.org/docs/app/building-your-application/configuring/mdx)
+
+<br/> 
+Below is the entire config for setting up NextJS to:
+* Automatically generate a table of contents for each blog post using its headers.
+* Add syntax highlighting to code blocks.
+* Add anchor links to each header.
+
+
+<br/>
+```File: next.config.mjs```
+
+
+```typescript
+import createMDX from '@next/mdx';
+import toc from '@atomictech/rehype-toc';
+
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
+import rehypeHighlight from 'rehype-highlight';
+import langPython from 'highlight.js/lib/languages/python';
+import langSwift from 'highlight.js/lib/languages/swift';
+import langGo from 'highlight.js/lib/languages/go';
+import langRust from 'highlight.js/lib/languages/rust';
+
+/** @type {import('next').NextConfig} */
+
+const nextConfig = {
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+};
+
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [
+      [
+        rehypeHighlight,
+        {
+          languages: {
+            python: langPython,
+            swift: langSwift,
+            go: langGo,
+            typescript: langTypescript,
+          },
+        },
+      ],
+      [rehypeSlug],
+      [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+      [toc, { headings: ['h2', 'h3'], placeholder: 'TOCHERE' }],
+    ],
+  },
+}); 
+```
 
 
 
