@@ -10,13 +10,18 @@ import { isDev } from '@/lib/utils';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { Badge } from './ui/badge';
+import { ProjectBadgeSet } from './shared/project-badge-set';
 
-export function ProjectCard({ project }: { project: Project }) {
+type ProjectCardProps = {
+  project: Project;
+};
+
+export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div className="flex">
       <Link
-        legacyBehavior
-        passHref
+        // legacyBehavior
+        // passHref
         href={project.href}
         scroll={true}
         // tabIndex={!project.blogCompleted ? -1 : undefined}
@@ -38,67 +43,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
             <CardDescription>{project.description}</CardDescription>
 
-            <div>
-              {!project.blogCompleted && (
-                <Badge className="mr-2 mb-1 border-red-900" variant={'outline'}>
-                  Blog In Progress
-                </Badge>
-              )}
-
-              {project.sourceType === 'Closed Source' && (
-                <Badge
-                  className=" mr-2 mb-1 border-blue-900"
-                  variant={'outline'}
-                >
-                  Closed Source
-                </Badge>
-              )}
-
-              {project.developmentStatus === 'Active Development' && (
-                <Badge
-                  className=" mr-2 mb-1 border-yellow-700"
-                  variant={'outline'}
-                >
-                  Active Development
-                </Badge>
-              )}
-
-              {project.developmentStatus === 'Completed' && (
-                <Badge
-                  className=" mr-2 mb-1 border-orange-900"
-                  variant={'outline'}
-                >
-                  Completed
-                </Badge>
-              )}
-
-              {project.sourceType === 'Open Source' && (
-                <Badge
-                  className=" mr-2 mb-1 border-green-900"
-                  variant={'outline'}
-                >
-                  Open Source
-                </Badge>
-              )}
-
-              {project.projectType === 'Demo' && (
-                <Badge
-                  className=" mr-2 mb-1 border-sky-400"
-                  variant={'outline'}
-                >
-                  Demo
-                </Badge>
-              )}
-
-              {project.projectType === 'Production' && (
-                <Badge
-                  className=" mr-2 mb-1 border-purple-700"
-                  variant={'outline'}
-                >
-                  Production
-                </Badge>
-              )}
-            </div>
+            <ProjectBadgeSet project={project} />
           </CardHeader>
 
           <CardContent>

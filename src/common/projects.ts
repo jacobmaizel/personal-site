@@ -20,6 +20,7 @@ let fitnessCompetitionsProject: Project = {
   articleWrittenDate: 'Dec 12, 2023',
   github: 'swiftui-golang-app-demo',
   featured: true,
+  videoUrl: 'https://www.youtube.com/embed/uwpdLSW0FPA',
   developmentStatus: 'Completed',
   sourceType: 'Open Source',
   projectType: 'Demo',
@@ -53,7 +54,7 @@ let rustAxumDemo: Project = {
   blogCompleted: false,
   description:
     'A Demo Rust Axum REST API demo with OpenTelemetry Distributed Tracing',
-  platforms: [ios, web, watch],
+  platforms: [web],
   href: '/projects/rust-axum-demo',
   imageObjectFit: 'object-cover',
   image: '/blog-pictures/axum-demo-header.png',

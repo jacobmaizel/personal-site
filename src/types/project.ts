@@ -7,6 +7,7 @@ export type Project = {
   title: string;
   articleWrittenDate: string;
   description: string;
+  videoUrl?: string;
   sourceType: SourceType;
   projectType: ProjectType;
   featured: boolean;

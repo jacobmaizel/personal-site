@@ -1,15 +1,20 @@
 import {BlogHeader} from 'src/components/blog/blog-header.tsx'
 import {BlockQuote} from 'src/components/blog/block-quote.tsx'
 import { fitnessCompetitionsProject } from 'src/common/projects.ts'
+import {Video} from 'src/common/video.tsx'
 import { Divider } from 'src/components/ui/divider.tsx'
 import 'src/styles/highlight-js/github-dimmed.css'
 
-<BlogHeader {...fitnessCompetitionsProject}  />
+<BlogHeader project={fitnessCompetitionsProject}  />
 
 
 TOCHERE
 
 <Divider padding={'py-4'} width={'w-full'} />
+<Video src={fitnessCompetitionsProject.videoUrl} />
+<Divider padding={'py-4'} width={'w-full'} />
+
+
 
 # NOTE
 
