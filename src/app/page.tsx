@@ -21,50 +21,42 @@ export default function Home() {
     <div className="flex justify-center items-center h-full w-full">
       <div className="flex flex-col">
         {/* Intro */}
-        <text className="font-bold text-3xl">
+        <p className="font-bold text-3xl mb-4">
           Hey there! You found Jacob Maizel&apos;s blog! 👋🏼
-        </text>
+        </p>
 
-        <text className=" text-sm italic font-bold py-4">
-          wait a second... who is Jacob Maizel?
-        </text>
+        <p>
+          I&apos;m a software engineer based in New York City, currently looking
+          for a new role!
+        </p>
 
-        <text>
-          I&apos;m a software engineer based in New York City, currently working
-          at{' '}
-          <a
-            href="https://www.flockx.io"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500"
-          >
-            FlockX
-          </a>{' '}
-          building software to help businesses get their activities to their
-          local communities.
-        </text>
+        <p className="mt-4">
+          If you&apos;re looking for a highly versatile, experience software
+          engineer to handle backend, frontend, or both, check out my LinkedIn
+          above and lets chat!
+        </p>
 
-        <text className="pt-4">
+        <p className="pt-4">
           On the side, I work on a wide range of personal projects. I plan on
           open sourcing and writing about some of them on this site.
-        </text>
+        </p>
 
         {/* <Divider padding={'py-4'} width={'w-full'} /> */}
 
-        <text className="leading-tight pt-4 ">
+        <p className="leading-tight pt-4 ">
           Connect with me on LinkedIn above, or check out some of my projects
           below!
           <br />
-          <text className="italic ">
+          <span className="italic ">
             If they are not available on Github yet, they will be soon!
-          </text>
-        </text>
+          </span>
+        </p>
 
         <Divider padding={'py-4'} width={'w-full'} />
 
         {/* Projects */}
 
-        <text className="font-bold text-2xl py-4">Projects</text>
+        <p className="font-bold text-2xl py-4">Projects</p>
 
         <div className="gap-4 flex flex-col items-center md:items-start md:flex-row md:flex-wrap">
           {allProjects
