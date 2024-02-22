@@ -70,7 +70,7 @@ export default function RootLayout({
           <div className="flex m-2 md:mx-32 md:mt-16">
             {children}
             <Analytics />
-            <SpeedInsights />
+            {/* <SpeedInsights /> */}
           </div>
         </ThemeProvider>
       </body>
